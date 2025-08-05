@@ -12,7 +12,7 @@ void loop() {
 }
 ```
 
-##### Ejercicio n°2 Arduino: "Semáforo"
+### Ejercicio n°2 Arduino: "Semáforo"
 
 ```js
 // C++ code - Semáforo Autos y Peatones
