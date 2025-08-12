@@ -103,7 +103,6 @@ void loop() {
   int brillo = map(valor, 0, 1023, 0, 255);  // Convertir a rango PWM
   analogWrite(9, brillo);               // Ajustar brillo
 }
-Semáforo
 ```
 
 
