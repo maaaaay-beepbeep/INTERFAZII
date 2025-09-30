@@ -117,7 +117,9 @@ void loop() {
 src="https://raw.githubusercontent.com/maaaaay-beepbeep/INTERFAZII/refs/heads/main/img/led%20con%20potenciador.png"/>
 
 
-### Ejercicio n°6 Arduino: "Semáforo con led" en físico
+Arduino como Periférico
+
+### Ejercicio n°? Arduino: "Semáforo con led" en físico
 
 ```js
 // C++ code - Semáforo Autos y Peatones
@@ -167,7 +169,7 @@ void loop() {
 ```
 
 
-### Ejercicio n°7 Arduino: "Semáforo parpadeante con led" en físico
+### Ejercicio n°? Arduino: "Semáforo parpadeante con led" en físico
 
 ```js
 // C++ code - Semáforo Autos y Peatones
@@ -232,7 +234,7 @@ void loop() {
 ```
 
 
-### Ejercicio n°8 Arduino: "Potenciador en Processing"
+### Ejercicio n°6 Arduino: "Potenciador + Processing"
 
 ```js
 import processing.serial.*;
