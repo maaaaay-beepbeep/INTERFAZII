@@ -316,7 +316,7 @@ void draw()
 ### Entrega n°1: Semáforo en Arduino + modificaciones
 
 ```js
-enlace de código con sus modificaciones: https://docs.google.com/document/d/1LgkIKUsXWpTZZkGF7ONNi1rBaF-qCVB6cX15AuuwSvw/edit?usp=sharing
+## enlace de código con sus modificaciones: https://docs.google.com/document/d/1LgkIKUsXWpTZZkGF7ONNi1rBaF-qCVB6cX15AuuwSvw/edit?usp=sharing
 ```
 
 ```js
