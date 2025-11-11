@@ -24,7 +24,7 @@ void loop() {
 <img
 src="https://raw.githubusercontent.com/maaaaay-beepbeep/INTERFAZII/refs/heads/main/img/hola%20mundo.png"/>
 
-### Ejercicio n°2 Arduino: "Semáforo"
+### Ejercicio n°5 Arduino: "Semáforo"
 
 ```js
 // C++ code - Semáforo Autos y Peatones
@@ -75,7 +75,7 @@ void loop() {
 <img
 src="https://raw.githubusercontent.com/maaaaay-beepbeep/INTERFAZII/refs/heads/main/img/sem%C3%A1foro.png"/>
 
-### Ejercicio n°3 Arduino: "Led Parpadeante"
+### Ejercicio n°2 Arduino: "Led Parpadeante"
 
 ```js
 void setup() {  // Configuración inicial (ej: pines como entrada/salida)
@@ -111,7 +111,7 @@ void loop() {
 src="https://raw.githubusercontent.com/maaaaay-beepbeep/INTERFAZII/refs/heads/main/img/control%20por%20pulsador.png"/>
 
 
-### Ejercicio n°5 Arduino: "LED con Potenciómetro"
+### Ejercicio n°3 Arduino: "LED con Potenciómetro"
 
 ```js
 void setup() {
