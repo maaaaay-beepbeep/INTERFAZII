@@ -5,8 +5,7 @@
 3. [Control por Pulsador](#ejercicio-n3-arduino-control-por-pulsador)<br>
 4. [Led con Potenciómetro](#ejercicio-n4-arduino-led-con-potenci%C3%B3metro)<br>
 5. [Semáforo](#ejercicio-n5-arduino-sem%C3%A1foro)<br>
-6. [Potenciador + Processing](#ejercicio-n6-arduino-potenciador--processing)<br>
-
+6. 
 
 
 ### Ejercicio n°1 Arduino: "Hola Mundo"
@@ -252,7 +251,7 @@ void loop() {
 ```
 
 
-### Ejercicio n°6 Arduino: "Potenciador + Processing"
+### Ejercicio n°6 Processing: Potenciometro
 
 ```js
 import processing.serial.*;
