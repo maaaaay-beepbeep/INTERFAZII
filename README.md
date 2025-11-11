@@ -611,9 +611,6 @@ void calcAverage(float t) {
 }
 ```
 <img
-src="https://raw.githubusercontent.com/maaaaay-beepbeep/INTERFAZII/refs/heads/main/img/promedio_imagenes3.png"/>
-
-<img
 src="https://raw.githubusercontent.com/maaaaay-beepbeep/INTERFAZII/refs/heads/main/img/promedio_imagenes2.png"/>
 
 <img
