@@ -333,7 +333,7 @@ void draw()
 
 ### Entrega n°2: CHROMA.S
 
-´´´js
+```js
 Código Arduino:
 
 // --- Configuración de botones ---
@@ -499,4 +499,4 @@ void actualizarVolumen() {
   tristeza.amp(volumen);
   rabia.amp(volumen);
 }
-´´´
+```
