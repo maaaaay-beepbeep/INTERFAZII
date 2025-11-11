@@ -303,4 +303,200 @@ void draw()
 }
 ```
 
-### Ejercicio n°7: Pulsador + Processing
+### Ejercicio n°7 Processing: Pulsador
+
+### Ejercicio n°8 Processing: Botón + Potenciómetro
+
+### Ejercicio n°9 Arduino: If / else
+
+### Ejercicio n°10 Processing: Botón
+
+### Ejercicio n° 10? Arduino: Botonera
+
+### Entrega n°1: Semáforo en Arduino + modificaciones
+
+### Ejercicio n°11 Arduino: Sensor de distancia
+
+### Ejercicio n°11? Processing: ´´
+
+### Ejercicio n°12 Processing: Vídeo Ascii
+
+### Ejercicio n°13 Arduino: Vídeo Glitch
+
+### Ejercicio n°14 Arduino: Sensor de humedad
+
+### Ejercicio n°15 Arduino: Cuerpo, Vídeo y Sensor Sharp
+
+### Ejercicio n°15? Processing: ´´
+
+### Ejercicio n°16 Processing: Promedio de imágenes
+
+### Entrega n°2: CHROMA.S
+
+´´´js
+Código Arduino:
+
+// --- Configuración de botones ---
+const int numButtons = 3;
+const int buttonPins[numButtons] = {2, 4, 7};
+const int ledButtonPins[numButtons] = {9, 10, 11}; // LEDs botones
+
+// --- Configuración de potenciómetros ---
+const int numPots = 2;
+const int potPins[numPots] = {A0, A1};
+const int ledPotPins[numPots] = {3, 5}; // LEDs PWM
+
+// Variables de estados previos
+int lastButtonState[numButtons];
+int lastPotValue[numPots];
+
+void setup() {
+  Serial.begin(9600);
+
+  // Configurar botones y LEDs
+  for (int i = 0; i < numButtons; i++) {
+    pinMode(buttonPins[i], INPUT_PULLUP);
+    pinMode(ledButtonPins[i], OUTPUT);
+    lastButtonState[i] = digitalRead(buttonPins[i]);
+  }
+
+  // Configurar LEDs de potenciómetros
+  for (int i = 0; i < numPots; i++) {
+    pinMode(ledPotPins[i], OUTPUT);
+    lastPotValue[i] = analogRead(potPins[i]);
+  }
+}
+
+void loop() {
+  // Leer y enviar botones
+  for (int i = 0; i < numButtons; i++) {
+    int buttonState = digitalRead(buttonPins[i]);
+    digitalWrite(ledButtonPins[i], buttonState == LOW ? HIGH : LOW);
+
+    if (buttonState != lastButtonState[i]) {
+      Serial.print("B");
+      Serial.print(i);
+      Serial.print(":");
+      Serial.println(buttonState);
+      lastButtonState[i] = buttonState;
+    }
+  }
+
+  // Leer y enviar potenciómetros
+  for (int i = 0; i < numPots; i++) {
+    int potValue = analogRead(potPins[i]);
+    int pwmValue = potValue / 4;
+
+    analogWrite(ledPotPins[i], pwmValue);
+
+    if (abs(pwmValue - lastPotValue[i]) > 2) {
+      Serial.print("P");
+      Serial.print(i);
+      Serial.print(":");
+      Serial.println(pwmValue);
+      lastPotValue[i] = pwmValue;
+    }
+  }
+
+  delay(10);
+}
+
+Código Processing:
+import processing.serial.*;
+import processing.sound.*;
+
+Serial myPort;
+
+// Sonidos emocionales
+SoundFile alegria, tristeza, rabia;
+boolean playingAlegria = false;
+boolean playingTristeza = false;
+boolean playingRabia = false;
+
+// Estado de botones
+boolean[] buttonState = {false, false, false};
+
+// Colores base de las emociones
+color cAlegria = color(255, 230, 0);   // Amarillo cálido
+color cTristeza = color(0, 120, 255);  // Azul profundo
+color cRabia = color(255, 50, 30);     // Rojo intenso
+
+// Potenciómetros
+float brillo = 1.0;
+float volumen = 1.0;
+
+void setup() {
+  size(800, 600);
+  myPort = new Serial(this, "COM3", 9600); // Cambia COM3 según tu puerto
+
+  alegria = new SoundFile(this, "alegria.wav");
+  tristeza = new SoundFile(this, "tristeza.wav");
+  rabia = new SoundFile(this, "rabia.wav");
+}
+
+void draw() {
+  leerDatos();
+
+  // Mezclar colores activos
+  color fondo = color(0);
+  int count = 0;
+
+  if (buttonState[0]) { fondo = lerpColor(fondo, cAlegria, 0.5); count++; }
+  if (buttonState[1]) { fondo = lerpColor(fondo, cTristeza, 0.5); count++; }
+  if (buttonState[2]) { fondo = lerpColor(fondo, cRabia, 0.5); count++; }
+
+  if (count > 0) fondo = color(
+    red(fondo) * brillo,
+    green(fondo) * brillo,
+    blue(fondo) * brillo
+  );
+
+  background(fondo);
+  fill(255);
+  textAlign(CENTER, CENTER);
+  textSize(24);
+  text("Botonera Emocional", width/2, height - 50);
+}
+
+void leerDatos() {
+  while (myPort.available() > 0) {
+    String data = trim(myPort.readStringUntil('\n'));
+    if (data == null || data.length() < 2) return;
+
+    if (data.charAt(0) == 'B') {
+      String[] partes = splitTokens(data.substring(1), ":");
+      if (partes.length == 2) {
+        int id = int(partes[0]);
+        int estado = int(partes[1]);
+        buttonState[id] = (estado == 0); // LOW = presionado
+
+        if (buttonState[id]) activarSonido(id);
+      }
+    }
+
+    if (data.charAt(0) == 'P') {
+      String[] partes = splitTokens(data.substring(1), ":");
+      if (partes.length == 2) {
+        int id = int(partes[0]);
+        int valor = int(partes[1]);
+
+        if (id == 0) brillo = map(valor, 0, 255, 0.3, 1.5);
+        if (id == 1) volumen = map(valor, 0, 255, 0.0, 1.0);
+        actualizarVolumen();
+      }
+    }
+  }
+}
+
+void activarSonido(int id) {
+  if (id == 0 && !playingAlegria) { alegria.loop(); playingAlegria = true; }
+  if (id == 1 && !playingTristeza) { tristeza.loop(); playingTristeza = true; }
+  if (id == 2 && !playingRabia) { rabia.loop(); playingRabia = true; }
+}
+
+void actualizarVolumen() {
+  alegria.amp(volumen);
+  tristeza.amp(volumen);
+  rabia.amp(volumen);
+}
+´´´
