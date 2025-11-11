@@ -610,6 +610,7 @@ void calcAverage(float t) {
   avgImg.updatePixels();
 }
 ```
+<img
 src="https://raw.githubusercontent.com/maaaaay-beepbeep/INTERFAZII/refs/heads/main/img/promedio_imagenes1.png"/>
 
 ### Entrega n°2: CHROMA.S
