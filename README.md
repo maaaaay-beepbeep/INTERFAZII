@@ -1,9 +1,9 @@
 # INTERFAZIII
 
 1. [Hola Mundo](#ejercicio-n1-arduino-hola-mundo)<br>
-2. [Semáforo](#ejercicio-n2-arduino-sem%C3%A1foro)<br>
-3. [Led Parpadenate](#ejercicio-n3-arduino-led-parpadeante)<br>
-4. [Control por Pulsador](#ejercicio-n4-arduino-control-por-pulsador)<br>
+2. [Led Parpadeante](
+3. [Control por Pulsador](
+4. [Led con Potenciómetro](
 5. [LED con Potenciómetro](#ejercicio-n5-arduino-led-con-potenci%C3%B3metro)<br>
 6. [Potenciador + Processing](#ejercicio-n6-arduino-potenciador--processing)<br>
 
@@ -23,6 +23,60 @@ void loop() {
 ```
 <img
 src="https://raw.githubusercontent.com/maaaaay-beepbeep/INTERFAZII/refs/heads/main/img/hola%20mundo.png"/>
+
+
+### Ejercicio n°2 Arduino: "Led Parpadeante"
+
+```js
+void setup() {  // Configuración inicial (ej: pines como entrada/salida)
+  pinMode(13, OUTPUT);  // Pin 13 como salida
+}
+
+void loop() {   // Se repite infinitamente
+  digitalWrite(13, HIGH);  // Encender LED
+  delay(1000);             // Esperar 1 segundo
+  digitalWrite(13, LOW);   // Apagar LED
+  delay(1000);             // Esperar 1 segundo
+}
+```
+<img
+src="https://raw.githubusercontent.com/maaaaay-beepbeep/INTERFAZII/refs/heads/main/img/led%20parpadeante.png"/>
+
+
+### Ejercicio n°3 Arduino: "Control por Pulsador"
+
+```js
+void setup() {
+  pinMode(2, INPUT);  // Botón como entrada
+  pinMode(13, OUTPUT);
+}
+void loop() {
+  if (digitalRead(2) == HIGH) {  // Si se presiona el botón
+    digitalWrite(13, HIGH);
+  } else {
+    digitalWrite(13, LOW);
+  }
+}
+```
+<img
+src="https://raw.githubusercontent.com/maaaaay-beepbeep/INTERFAZII/refs/heads/main/img/control%20por%20pulsador.png"/>
+
+
+### Ejercicio n°4 Arduino: "LED con Potenciómetro"
+
+```js
+void setup() {
+  pinMode(9, OUTPUT);  // Pin PWM (símbolo ~)
+}
+void loop() {
+  int valor = analogRead(A0);           // Leer potenciómetro (0-1023)
+  int brillo = map(valor, 0, 1023, 0, 255);  // Convertir a rango PWM
+  analogWrite(9, brillo);               // Ajustar brillo
+}
+```
+<img
+src="https://raw.githubusercontent.com/maaaaay-beepbeep/INTERFAZII/refs/heads/main/img/led%20con%20potenciador.png"/>
+
 
 ### Ejercicio n°5 Arduino: "Semáforo"
 
@@ -75,56 +129,10 @@ void loop() {
 <img
 src="https://raw.githubusercontent.com/maaaaay-beepbeep/INTERFAZII/refs/heads/main/img/sem%C3%A1foro.png"/>
 
-### Ejercicio n°2 Arduino: "Led Parpadeante"
-
-```js
-void setup() {  // Configuración inicial (ej: pines como entrada/salida)
-  pinMode(13, OUTPUT);  // Pin 13 como salida
-}
-
-void loop() {   // Se repite infinitamente
-  digitalWrite(13, HIGH);  // Encender LED
-  delay(1000);             // Esperar 1 segundo
-  digitalWrite(13, LOW);   // Apagar LED
-  delay(1000);             // Esperar 1 segundo
-}
-```
-<img
-src="https://raw.githubusercontent.com/maaaaay-beepbeep/INTERFAZII/refs/heads/main/img/led%20parpadeante.png"/>
-
-### Ejercicio n°4 Arduino: "Control por Pulsador"
-
-```js
-void setup() {
-  pinMode(2, INPUT);  // Botón como entrada
-  pinMode(13, OUTPUT);
-}
-void loop() {
-  if (digitalRead(2) == HIGH) {  // Si se presiona el botón
-    digitalWrite(13, HIGH);
-  } else {
-    digitalWrite(13, LOW);
-  }
-}
-```
-<img
-src="https://raw.githubusercontent.com/maaaaay-beepbeep/INTERFAZII/refs/heads/main/img/control%20por%20pulsador.png"/>
 
 
-### Ejercicio n°3 Arduino: "LED con Potenciómetro"
 
-```js
-void setup() {
-  pinMode(9, OUTPUT);  // Pin PWM (símbolo ~)
-}
-void loop() {
-  int valor = analogRead(A0);           // Leer potenciómetro (0-1023)
-  int brillo = map(valor, 0, 1023, 0, 255);  // Convertir a rango PWM
-  analogWrite(9, brillo);               // Ajustar brillo
-}
-```
-<img
-src="https://raw.githubusercontent.com/maaaaay-beepbeep/INTERFAZII/refs/heads/main/img/led%20con%20potenciador.png"/>
+
 
 
 Arduino como Periférico
