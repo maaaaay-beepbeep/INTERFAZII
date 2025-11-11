@@ -305,13 +305,23 @@ void draw()
 
 ### Ejercicio n°7 Processing: Pulsador
 
+```js
+
 ### Ejercicio n°8 Processing: Botón + Potenciómetro
+
+```js
 
 ### Ejercicio n°9 Arduino: If / else
 
+```js
+
 ### Ejercicio n°10 Processing: Botón
 
+```js
+
 ### Ejercicio n° 10? Arduino: Botonera
+
+```js
 
 ### Entrega n°1: Semáforo en Arduino + modificaciones
 
@@ -394,18 +404,40 @@ void loop() {
 }
 ```
 
-
 ### Ejercicio n°11 Arduino: Sensor de distancia
+
+```js
 
 ### Ejercicio n°11? Processing: ´´
 
+```js
+
 ### Ejercicio n°12 Processing: Vídeo Ascii
+
+```js
 
 ### Ejercicio n°13 Arduino: Vídeo Glitch
 
+```js
+
 ### Ejercicio n°14 Arduino: Sensor de humedad
 
+```js
+
 ### Ejercicio n°15 Arduino: Cuerpo, Vídeo y Sensor Sharp
+
+```js
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int potValue = analogRead(A0);
+  Serial.println(potValue);
+  delay(20);
+}
+```
+
 
 ### Ejercicio n°15? Processing: ´´
 
@@ -492,7 +524,93 @@ void draw() {
 }
 ```
 
-### Ejercicio n°16 Processing: Promedio de imágenes
+### Ejercicio n°16 Arduino: Promedio de imágenes
+
+```js
+// --- Sensor Sharp conectado al pin A0 ---
+int sensorPin = A0;
+int valor;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  valor = analogRead(sensorPin);
+  Serial.println(valor);
+  delay(50); // envío cada 50 ms
+}
+```
+
+
+### Ejercicio n°16 Processing: ´´
+
+```js
+import processing.serial.*;
+
+Serial myPort;
+PImage[] imgs;
+int numImages = 3;
+PImage avgImg;
+float mixAmount = 0;
+
+void setup() {
+  size(800, 600);
+  println(Serial.list());
+  
+  //Cambia el índice según tu puerto (0, 1, 2, etc.)
+  myPort = new Serial(this, Serial.list()[0], 9600);
+  //myPort = new Serial(this, "/dev/cu.usbmodem1101", 9600);
+  myPort.bufferUntil('\n');
+
+  // Cargar imágenes
+  imgs = new PImage[numImages];
+  imgs[0] = loadImage("img1.jpg");
+  imgs[1] = loadImage("img2.jpg");
+  imgs[2] = loadImage("img3.jpg");
+
+  avgImg = createImage(imgs[0].width, imgs[0].height, RGB);
+}
+
+void draw() {
+  // Dibujar la imagen promedio según el valor del potenciómetro
+  background(0);
+  calcAverage(mixAmount);
+  image(avgImg, 0, 0, width, height);
+  
+  fill(255);
+  textSize(20);
+  text("Mezcla: " + nf(mixAmount, 1, 2), 20, height - 20);
+}
+
+void serialEvent(Serial p) {
+  String val = p.readStringUntil('\n');
+  if (val != null) {
+    val = trim(val);
+    float sensor = float(val);
+    mixAmount = map(sensor, 0, 1023, 0, 1); // 0 a 1
+  }
+}
+
+void calcAverage(float t) {
+  avgImg.loadPixels();
+
+  for (int i = 0; i < avgImg.pixels.length; i++) {
+    color c1 = imgs[0].pixels[i];
+    color c2 = imgs[1].pixels[i];
+    color c3 = imgs[2].pixels[i];
+
+    // Promedio ponderado según el potenciómetro
+    float r = red(c1)*(1-t) + red(c2)*t*0.5 + red(c3)*t*0.5;
+    float g = green(c1)*(1-t) + green(c2)*t*0.5 + green(c3)*t*0.5;
+    float b = blue(c1)*(1-t) + blue(c2)*t*0.5 + blue(c3)*t*0.5;
+
+    avgImg.pixels[i] = color(r, g, b);
+  }
+  avgImg.updatePixels();
+}
+```
+
 
 ### Entrega n°2: CHROMA.S
 
@@ -564,7 +682,10 @@ void loop() {
   delay(10);
 }
 
+
+
 Código Processing:
+
 import processing.serial.*;
 import processing.sound.*;
 
