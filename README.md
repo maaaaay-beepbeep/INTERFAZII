@@ -315,6 +315,86 @@ void draw()
 
 ### Entrega n°1: Semáforo en Arduino + modificaciones
 
+```js
+enlace de código con sus modificaciones: https://docs.google.com/document/d/1LgkIKUsXWpTZZkGF7ONNi1rBaF-qCVB6cX15AuuwSvw/edit?usp=sharing
+```
+
+```js
+// Semáforo de Autos y Peatones
+
+// Pines de los LEDs
+const int LED_ROJO_AUTOS = 6;
+const int LED_AMARILLO_AUTOS = 7;
+const int LED_VERDE_AUTOS = 8;
+
+const int LED_VERDE_PEATONES = 9;
+const int LED_ROJO_PEATONES = 10;
+
+void setup() {
+  // Configuramos todos los pines como salidas
+  pinMode(LED_ROJO_AUTOS, OUTPUT);
+  pinMode(LED_AMARILLO_AUTOS, OUTPUT);
+  pinMode(LED_VERDE_AUTOS, OUTPUT);
+  pinMode(LED_VERDE_PEATONES, OUTPUT);
+  pinMode(LED_ROJO_PEATONES, OUTPUT);
+}
+
+void loop() {
+  // 🚦 FASE 1: Autos en verde, peatones en rojo
+  digitalWrite(LED_VERDE_AUTOS, HIGH);
+  digitalWrite(LED_ROJO_AUTOS, LOW);
+  digitalWrite(LED_AMARILLO_AUTOS, LOW);
+
+  digitalWrite(LED_VERDE_PEATONES, LOW);
+  digitalWrite(LED_ROJO_PEATONES, HIGH);
+  delay(5000);
+
+  // 🚦 FASE 2: Autos en amarillo, rojo peatones parpadeando
+  digitalWrite(LED_VERDE_AUTOS, LOW);
+  digitalWrite(LED_AMARILLO_AUTOS, HIGH);
+
+  for (int i = 0; i < 4; i++) {
+    digitalWrite(LED_ROJO_PEATONES, LOW);
+    delay(250);
+    digitalWrite(LED_ROJO_PEATONES, HIGH);
+    delay(250);
+     digitalWrite(LED_ROJO_PEATONES, LOW);
+    delay(250);
+    digitalWrite(LED_ROJO_PEATONES, HIGH);
+    delay(250);
+     digitalWrite(LED_ROJO_PEATONES, LOW);
+    delay(250);
+    digitalWrite(LED_ROJO_PEATONES, HIGH);
+    delay(250);
+  }
+
+  digitalWrite(LED_AMARILLO_AUTOS, LOW);
+
+  // 🚦 FASE 3: Autos en rojo, peatones en verde
+  digitalWrite(LED_ROJO_AUTOS, HIGH);
+  digitalWrite(LED_VERDE_PEATONES, HIGH);
+  digitalWrite(LED_ROJO_PEATONES, LOW);
+  delay(5000);
+
+  // Parpadeo del verde de peatones
+  for (int i = 0; i < 4; i++) {
+    digitalWrite(LED_VERDE_PEATONES, LOW);
+    delay(250);
+    digitalWrite(LED_VERDE_PEATONES, HIGH);
+    delay(250);
+    digitalWrite(LED_VERDE_PEATONES, LOW);
+    delay(250);
+    digitalWrite(LED_VERDE_PEATONES, HIGH);
+    delay(250);
+    digitalWrite(LED_VERDE_PEATONES, LOW);
+    delay(250);
+    digitalWrite(LED_VERDE_PEATONES, HIGH);
+    delay(250);
+  }
+}
+```
+
+
 ### Ejercicio n°11 Arduino: Sensor de distancia
 
 ### Ejercicio n°11? Processing: ´´
