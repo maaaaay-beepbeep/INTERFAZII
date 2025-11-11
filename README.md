@@ -2,7 +2,7 @@
 
 1. [Hola Mundo](#ejercicio-n1-arduino-hola-mundo)<br>
 2. [Led Parpadeante](#ejercicio-n2-arduino-led-parpadeante)<br>
-3. [Control por Pulsador](
+3. [Control por Pulsador](#ejercicio-n3-arduino-control-por-pulsador)<br>
 4. [Led con Potenciómetro](
 5. [LED con Potenciómetro](#ejercicio-n5-arduino-led-con-potenci%C3%B3metro)<br>
 6. [Potenciador + Processing](#ejercicio-n6-arduino-potenciador--processing)<br>
