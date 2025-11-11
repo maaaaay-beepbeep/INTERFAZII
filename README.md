@@ -296,3 +296,4 @@ void draw()
 }
 ```
 
+### Ejercicio n°7: Pulsador + Processing
